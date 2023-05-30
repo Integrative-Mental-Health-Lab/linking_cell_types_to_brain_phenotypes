@@ -1,0 +1,14 @@
+---
+title: "Infer rsID if not readily in summary statistics"
+output: html_notebook
+---
+
+
+```{r}
+df_ref = read.table("auxfiles/SNPref_PGC3_SCZ_wave3.european.autosome.public.v3.vcf.tsv", header=T)
+df_stats = read.table("Stroke/AnyStroke/MEGASTROKE.1.AS.EUR.out", header = T)
+```
+
+```{r}
+df_merged = merge(df_stats, df_ref, by.x = "MarkerName", by.y="ID")
+```

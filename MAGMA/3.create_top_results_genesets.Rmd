@@ -1,0 +1,23 @@
+---
+title: "Create a MAGMA Input File with Top Clusters"
+output: html_notebook
+---
+
+```{r}
+filename_geneset = "gene-level/Siletti_l2_top10.txt"
+filename_marg_result = "PTSD/Siletti_l2_top10_PTSD_wave3.gsa.out"
+filename_output = "PTSD/Siletti_l2_top10_geneset_50-only_PTSD_wave3.txt"
+```
+
+```{r}
+df <- read_table(filename_geneset, col_names=F)
+df_marg <- read_table(filename_marg_result, skip=4) %>% 
+  arrange(P) %>%
+  slice_head(n=50)
+#  filter(P < 0.05/n())
+sig_list <- df_marg$VARIABLE
+```
+```{r}
+df_sig <- df %>% slice(match(sig_list, X1))
+write_tsv(df_sig, filename_output, col_names = F)
+```

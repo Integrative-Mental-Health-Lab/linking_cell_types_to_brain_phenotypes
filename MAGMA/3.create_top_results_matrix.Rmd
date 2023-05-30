@@ -1,0 +1,26 @@
+---
+title: "Create a MAGMA input file with only top clusters"
+output: html_notebook
+---
+
+
+```{r}
+filename_spe_matrix = "gene-level/Siletti_l2_conti_specificity_matrix.txt"
+filename_marg_result = "PTSD/Siletti_l2_conti-spe_PTSD_wave3.gsa.out"
+filename_output = "PTSD/Siletti_l2_specificity_matrix_50-only_PTSD_wave3.txt"
+```
+
+```{r}
+df <- read_tsv(filename_spe_matrix)
+df_marg <- read_table(filename_marg_result, skip=3) %>% 
+  arrange(P) %>%
+  slice_head(n=50)    # get the top 50 clusters 
+#  filter(P < 0.05/n())    # get all of the significant clusters after Bonferroni correction. 
+sig_list <- df_marg$VARIABLE
+```
+
+```{r}
+df_sig <- df[c("GENE", sig_list)]
+write_tsv(df_sig, filename_output)
+```
+

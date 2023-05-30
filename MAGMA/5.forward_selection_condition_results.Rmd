@@ -1,0 +1,61 @@
+---
+title: "Forward selection on the results from conditional analysis"
+output: 
+  md_document:
+  keep_md: yes
+---
+
+Forward selection criteria can be found on [FUMA website](https://fuma.ctglab.nl/tutorial#celltype).
+
+```{r}
+library(dplyr)
+library(readr)
+filename_cond <- "PTSD/Siletti_l2_joint_spe_50-only_PTSD_wave3.gsa.out"
+filename_marg <- "PTSD/Siletti_l2_conti-spe_PTSD_wave3.gsa.out"
+```
+
+```{r}
+# Read dataframes
+df_cond <- read_table(filename_cond, skip=3) %>% 
+  subset(select=-c(TYPE, NGENES, BETA, BETA_STD, SE)) %>% 
+  rename(P_cond = P)
+df_marg <- read_table(filename_marg, skip=3) %>% 
+  subset(select=-c(TYPE, NGENES, BETA, BETA_STD, SE)) %>% 
+  rename(P_marg = P) %>% 
+  arrange(P_marg)
+n_sig <- ceiling(sqrt(nrow(df_cond)))
+```
+
+```{r}
+# combine dataframes
+df_comb <- left_join(df_cond, df_marg, by = "VARIABLE")
+df_comb <- df_comb %>% 
+  mutate(VarCode = rep(c("a", "b"),times=nrow(df_comb)/2)) %>%
+  pivot_wider(names_from = VarCode, values_from=c(VARIABLE, P_cond, P_marg)) %>%
+  mutate(PS_a=log10(P_cond_a)/log10(P_marg_a), PS_b=log10(P_cond_b)/log10(P_marg_b))
+# assert order
+stopifnot(df_comb$P_marg_a <= df_comb$P_marg_b)
+```
+
+```{r}
+# Reverse the order of (remove) forward selection for the following clusters:
+select_list <- df_marg$VARIABLE[1:n_sig]
+reverse_list <- df_comb$VARIABLE_a[df_comb$PS_a < 0.2 & df_comb$PS_b >= 0.2]
+select_list <- select_list[select_list %in% reverse_list == F][-1]
+```
+
+
+```{r}
+# Filter to an independent list
+indep_list <- list(toString(df_marg[1,1]))
+for (cur_var in select_list) {
+  for (indep_var in indep_list) {
+    # drop if the condition indicates so with any clusters in indep_list
+    df_cur = df_comb[df_comb$VARIABLE_a==indep_var & df_comb$VARIABLE_b==cur_var,]
+    if ((df_cur$PS_a >= 0.8 & df_cur$PS_b >= 0.8) | 
+        (df_cur$PS_a >= 0.5 & df_cur$PS_b >= 0.5 & df_cur$P_cond_b < 0.05)) {
+      if (tail(indep_list,1) == indep_var) indep_list <- append(indep_list, cur_var)
+    } else break
+  }
+}
+```
