@@ -2,7 +2,7 @@
 
 # Requirements
 1. Python libraries: `h5py`, `numexpr`
-2. R libraries: `tidyverse`, `rhdf5`, `AnnotationDbi`, `org.Hs.eg.db`
+2. R libraries: `tidyverse`, `rhdf5`, `AnnotationDbi`, `org.Hs.eg.db`, `dplyr`, `readr` 
 3. [MAGMA](https://ctg.cncr.nl/software/magma)
 
 # Data Requirements
@@ -11,7 +11,7 @@
 
 # Get MAGMA Inputs
 Follow the follwoing steps:
-1. [Get a $\ln(1+x)$-transformed Cluster $\times$ Gene matrix.](Preprocessing_Siletti/create_matrices/Siletti_create_L2-log_dataset.py)
+1. [Get a ln(1+x)-transformed cluster by gene matrix.](Preprocessing_Siletti/create_matrices/Siletti_create_L2-log_dataset.py)
 2. [Get continous specificity MAGMA input files.](Preprocessing_Siletti/create_magma_inputs/get_Siletti_continuous_input.md)
 
 # Run MAGMA
