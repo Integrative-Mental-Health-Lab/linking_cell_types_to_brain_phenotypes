@@ -29,4 +29,4 @@ Then, follow the steps below to run MAGMA (scripts to be modified accordingly):
 To run a pairwise conditional analysis on clusters after the steps above, follow these steps (scripts to be modified accordingly):
 1. To limit the computation time, [create a MAGMA input file with only top clusters](MAGMA/3.create_top_results_matrix.md), as indicated by the results from the previous step.
 2. [Run a pairwise conditional analysis.](MAGMA/4.conditionalAnalysis.sh)
-3. [Conduct a forward stepwise selection](MAGMA/5.forward_selection_condition_results.Rmd) to arrive at a list of independent clusters.
+3. [Conduct a forward stepwise selection](MAGMA/5.forward_selection_condition_results.md) to arrive at a list of independent clusters.
