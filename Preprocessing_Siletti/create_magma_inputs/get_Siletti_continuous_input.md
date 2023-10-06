@@ -1,5 +1,5 @@
 ---
-title: "Siletti 2022 scRNAseq Dataset - Get Specificity Matrix"
+title: "Siletti 2022 snRNAseq Dataset - Get Specificity Matrix"
 author: "Tayden Li"
 output:
   html_document:
@@ -7,31 +7,17 @@ output:
 ---
 
 Code is adapted from [Bryois (2020)](https://github.com/jbryois/scRNA_disease/tree/master).
-The script produces continuous specificity MAGMA inputs, with specificity calculated on a subset of clusters.
+The script produces continuous specificity MAGMA inputs.
 
 # Load Data
 
-The Siletti data was downloaded from [here](https://github.com/linnarsson-lab/adult-human-brain)
+The Siletti data was downloaded from [here](https://github.com/linnarsson-lab/adult-human-brain).
 
 ### Load necessary libraries
 
 
 ```r
 library(tidyverse)
-```
-
-```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
-## ✔ readr   2.1.3      ✔ forcats 0.5.2 
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-```
-
-```r
 library("rhdf5")
 ```
 
@@ -42,12 +28,12 @@ library("rhdf5")
 file="/oak/stanford/groups/laramied/LDSC/Bryois2020/Code_Paper/Data/Siletti/Siletti_L2-cluster-log1p_matrix.h5"
 h5f <- H5Fopen(file)
 exp <- as.data.frame(t(h5f$matrix))
-colnames(exp) <- h5f$Cluster # change column name
+colnames(exp) <- h5f$Cluster
 exp$Gene <- sub("\\..*", "", h5f$Accession)
 h5closeAll()
 ```
 
-### Keep certain clusters only.
+Keep certain clusters only (if needed).
 
 
 ```r
@@ -66,28 +52,19 @@ exp <- exp %>% add_count(Gene) %>%
   as.tibble()
 ```
 
-```
-## Warning: `as.tibble()` was deprecated in tibble 2.0.0.
-## ℹ Please use `as_tibble()` instead.
-## ℹ The signature and semantics have changed, see `?as_tibble`.
-```
-
 ### Load gene coordinates
-
-Load gene coordinates and extend upstream and downstream coordinates by 100kb.
 
 File downloaded from MAGMA website (https://ctg.cncr.nl/software/magma).
 
-Filtered to remove extended MHC (chr6, 25Mb to 34Mb).
+Filtered to remove extended MHC (chromosome 6, 25Mb to 34Mb).
 
 
 ```r
 gene_coordinates <- 
   read_tsv("../Data/NCBI/NCBI37.3.gene.loc.extendedMHCexcluded",
            col_names = FALSE,col_types = 'cciicc') %>%
-  mutate(start=ifelse(X3-100000<0,0,X3-100000),end=X4+100000) %>%
-  select(X2,start,end,1) %>% 
-  rename(chr="X2", ENTREZ="X1") %>% 
+  select(1:4) %>% 
+  rename(end="X4", start="X3", chr="X2", ENTREZ="X1") %>% 
   mutate(chr=paste0("chr",chr))
 ```
 
@@ -99,11 +76,7 @@ gene_coordinates <-
 entrez_ensembl <- AnnotationDbi::toTable(org.Hs.eg.db::org.Hs.egENSEMBL)
 ```
 
-```
-## 
-```
-
-Only keep genes with a unique entrez and ensembl id.
+Only keep genes with a unique ENTREZ and ENSEMBL ID.
 
 
 ```r
@@ -115,56 +88,44 @@ colnames(entrez_ensembl)[2] <- "Gene"
 gene_coordinates <- inner_join(entrez_ensembl,gene_coordinates) %>% as.tibble()
 ```
 
-```
-## Joining, by = "ENTREZ"
-```
-
-
 
 # Transform Data
 
-### Add cell cluster ID
+### Remove genes not expressed
 
 
 ```r
-exp_lvl5 <- transform(exp,ClusterID=exp$column) %>%
-  rename(Expr_sum_mean=Expr)
-```
+exp_agg <- exp %>% rename(ClusterID=column, Expr_sum_mean=Expr)
 
-### Remove not expressed genes
-
-
-```r
-not_expressed <- exp_lvl5 %>% 
+not_expressed <- exp_agg %>% 
   group_by(Gene) %>% 
   summarise(total_sum=sum(Expr_sum_mean)) %>% 
   filter(total_sum==0) %>% 
   select(Gene) %>% unique() 
 
-exp_lvl5 <- filter(exp_lvl5,!Gene%in%not_expressed$Gene)
+exp_agg <- filter(exp_agg,!Gene%in%not_expressed$Gene)
 ```
 
-### Scale data
-
-Each cell type is scaled to the same total number of molecules. 
+### Each cell type is scaled to the same total number of (transformed) molecules. 
 
 
 ```r
-exp_lvl5 <- exp_lvl5 %>% 
+exp_agg <- exp_agg %>% 
   group_by(ClusterID) %>% 
-  mutate(Expr_sum_mean=Expr_sum_mean*1000/sum(Expr_sum_mean))
+  mutate(Expr_sum_mean=Expr_sum_mean*1000/sum(Expr_sum_mean)) %>% 
+  ungroup()
 ```
 
 
 # Specificity Calculation
 
-The specifitiy is defined as the proportion of total expression performed by the cell type of interest (x/sum(x)).
+Specificity is defined as the proportion of total expression in a cell type of interest (x/sum(x)).
 
-### cluster level
+### Calculate specificity
 
 
 ```r
-exp_lvl5 <- exp_lvl5 %>% 
+exp_agg <- exp_agg %>% 
   group_by(Gene) %>% 
   mutate(specificity=Expr_sum_mean/sum(Expr_sum_mean)) %>% 
   ungroup()
@@ -172,31 +133,19 @@ exp_lvl5 <- exp_lvl5 %>%
 
 ### Get MAGMA genes
 
-Only keep genes that are tested in MAGMA
+Only keep genes in the MAGMA gene coordination list
 
 
 ```r
-exp_lvl5 <- inner_join(exp_lvl5,gene_coordinates,by="Gene")
-```
-
-### Get number of genes
-
-Get number of genes that represent 10% of the dataset
-
-
-```r
-n_genes <- length(unique(exp_lvl5$ENTREZ))
+exp_agg <- inner_join(exp_agg,gene_coordinates,by="Gene")
 ```
 
 ### Write MAGMA input file
 
 
 ```r
-exp_conti_spe <- exp_lvl5 %>% select(ENTREZ, ClusterID, specificity) %>% spread(ClusterID, specificity)
+exp_conti_spe <- exp_agg %>% select(ENTREZ, ClusterID, specificity) %>% spread(ClusterID, specificity)
 colnames(exp_conti_spe)[1] <- "GENE"
-```
 
-
-```r
-exp_conti_spe %>% write_tsv("MAGMA/conti_specificity_matrix_cluster83-205_excitatory-cortical-amygdala-hippocampal.txt")
+exp_conti_spe %>% write_tsv("MAGMA/conti_specificity_matrix.txt")
 ```

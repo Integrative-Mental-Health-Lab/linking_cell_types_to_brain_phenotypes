@@ -1,0 +1,6 @@
+Auxillary_data
+Preprocessing_Siletti/create_matrices/*
+!/Preprocessing_Siletti/create_matrices/Siletti_create_L2-log_dataset.py
+Preprocessing_Siletti/create_magma_inputs/*
+!/Preprocessing_Siletti/create_magma_inputs/get_Siletti_continuous*
+

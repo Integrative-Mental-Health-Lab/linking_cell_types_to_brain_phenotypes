@@ -26,7 +26,6 @@ f_write = h5py.File(new_file_name, 'w')
 avg_matrix = f_write.create_dataset("matrix", (n_genes, n_clusters), '<f8')
 #avg_matrix = f_write['matrix']
 print(avg_matrix.shape)
-num_col_to_avg = [np.sum(df_cluster == i) for i in np.arange(n_clusters)]
 
 for cluster_num in tqdm(np.arange(n_clusters)):
     dset_sub = dset[:, np.where(df_cluster==cluster_num)[0]]

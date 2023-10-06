@@ -19,14 +19,14 @@ Follow the following steps:
 First, confirm the following items:
 1. The summary statistics are from a single population that matches MAGMA's auxiliary data.
 2. The summary statistics are of the same genome build as MAGMA's auxiliary files.
-3. If the summary statistics do not contain a SNP ID column, obtain the SNP IDs from the chromosomal and base pair positions using a reference file of the same genome build. See [example](MAGMA/0.get_rsid.Rmd).
+3. If the summary statistics do not contain a SNP ID column, obtain the SNP IDs from the chromosomal and base pair positions using a reference file of the same genome build.
 
 Then, follow the steps below to run MAGMA (scripts to be modified accordingly):
-1. [Annotate and conduct a gene analysis.](MAGMA/1.step1and2.sh)
-2. [Run a gene property analysis.](MAGMA/2.step3-conti.sh)
+1. [Annotate and conduct a gene analysis.](MAGMA/1.annotationAndGeneAnalysis.sh)
+2. [Run a gene property analysis.](MAGMA/2.genePropertyAnalysis.sh)
 
 ### Conditional Analysis
 To run a pairwise conditional analysis on clusters after the steps above, follow these steps (scripts to be modified accordingly):
-1. To limit computation time, [create a MAGMA input file with only top clusters](MAGMA/3.create_top_results_matrix.Rmd), as indicated by the results from the previous step.
-2. [Run a pairwise conditional analysis.](MAGMA/4.step3-joint_conti.sh)
-3. [Conduct forward stepwise selection](5.forward_selection_condition_results.Rmd) to arrive at a list of relatively independent clusters.
+1. To limit the computation time, [create a MAGMA input file with only top clusters](MAGMA/3.create_top_results_matrix.md), as indicated by the results from the previous step.
+2. [Run a pairwise conditional analysis.](MAGMA/4.conditionalAnalysis.sh)
+3. [Conduct a forward stepwise selection](MAGMA/5.forward_selection_condition_results.Rmd) to arrive at a list of independent clusters.
