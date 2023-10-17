@@ -22,8 +22,9 @@ First, confirm the following items:
 3. If the summary statistics do not contain a SNP ID column, obtain the SNP IDs from the chromosomal and base pair positions using a reference file of the same genome build.
 
 Then, follow the steps below to run MAGMA (scripts to be modified accordingly):
-1. [Annotate and conduct a gene analysis.](MAGMA/1.annotationAndGeneAnalysis.sh)
-2. [Run a gene property analysis.](MAGMA/2.genePropertyAnalysis.sh)
+1. Create a SNP location file that contains three columns of the GWAS summary statistics in the following order: SNP ID, chromosome, and base pair position.
+2. [Annotate and conduct a gene analysis.](MAGMA/1.annotationAndGeneAnalysis.sh)
+3. [Run a gene property analysis.](MAGMA/2.genePropertyAnalysis.sh)
 
 ### Conditional Analysis
 To run a pairwise conditional analysis on clusters after the steps above, follow these steps (scripts to be modified accordingly):
