@@ -1,0 +1,39 @@
+Welcome to MAGMA v1.10 (linux)
+Using flags:
+	--gene-results SCZ/PGC3_SCZ_wave3.european.autosome.public.v3.vcf.tsv.no_heading.step2.genes.raw
+	--model direction=greater
+	--gene-covar gene-level/Siletti_l2_conti_specificity_matrix.txt
+	--out SCZ/Siletti_l2_conti-spe_SCZ_2022
+
+Start time is 15:35:43, Monday 20 Mar 2023
+
+Reading file SCZ/PGC3_SCZ_wave3.european.autosome.public.v3.vcf.tsv.no_heading.step2.genes.raw... 
+	18449 genes read from file
+Loading gene-level covariates...
+Reading file gene-level/Siletti_l2_conti_specificity_matrix.txt... 
+	detected 462 variables in file (using all)
+	found 462 valid gene covariates, for 16641 genes defined in genotype data
+Processing missing values...
+	found 1808 genes not present in all input files: removing these from analysis
+	16641 genes remaining in analysis
+Preparing variables for analysis...
+	truncating Z-scores 3 points below zero or 6 standard deviations above the mean
+	truncating covariate values more than 5 standard deviations from the mean
+	WARNING: discarding variable 'Average' from file gene-level/Siletti_l2_conti_specificity_matrix.txt, the variable is (almost) constant
+	total variables available for analysis: 461 gene covariates
+
+Parsing model specifications...
+Inverting gene-gene correlation matrix...
+Performing regression analysis...
+	testing direction: one-sided, positive (sets), one-sided, positive (covar)
+	conditioning on internal variables:
+		gene size, log(gene size)
+		gene density, log(gene density)
+		sample size, log(sample size)
+		inverse mac, log(inverse mac)
+	analysing individual variables
+
+	analysing single-variable models (number of models: 461)
+	writing results to file SCZ/Siletti_l2_conti-spe_SCZ_2022.gsa.out
+
+End time is 15:36:02, Monday 20 Mar 2023 (elapsed: 00:00:19)
