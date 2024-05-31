@@ -22,9 +22,8 @@ filename_output = "SCZ/Siletti_l2_specificity_matrix_sig-only_SCZ_2022.txt"
 
 ```{r, message=F}
 df <- read_tsv(filename_spe_matrix)
-df_marg <- read_table(filename_marg_result, skip=4) %>% 
+df_marg <- read_table(filename_marg_result, skip=4) %>%  # skip headers (3-4 lines)
   arrange(P) %>%
-#  slice_head(n=50)    # get the top 50 clusters 
   filter(P < 0.05/n())    # get all of the significant clusters after Bonferroni correction. 
 sig_list <- df_marg$VARIABLE
 ```

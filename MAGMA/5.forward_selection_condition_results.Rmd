@@ -19,10 +19,10 @@ filename_marg <- "SCZ/Siletti_l2_conti-spe_SCZ_2022.gsa.out"
 
 ### Read marginal and conditional results
 ```{r, message=F}
-df_cond <- read_table(filename_cond, skip=4) %>% 
+df_cond <- read_table(filename_cond, skip=4) %>%  # skip headers (3-4 lines)
   subset(select=-c(TYPE, NGENES, BETA, BETA_STD, SE)) %>% 
   rename(P_cond = P)
-df_marg <- read_table(filename_marg, skip=4) %>% 
+df_marg <- read_table(filename_marg, skip=4) %>%  # skip headers (3-4 lines)
   subset(select=-c(TYPE, NGENES, BETA, BETA_STD, SE)) %>% 
   rename(P_marg = P) %>% 
   arrange(P_marg)
