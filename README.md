@@ -1,4 +1,7 @@
-# Mapping the Cellular Etiology of Psychiatric Disorders
+# Mapping the Cellular Etiology of Schizophrenia and Diverse Brain Phenotypes
+This is the code for the following publication:
+Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal Senturk, Naghmeh Shargh, Sam Vesuna, Hanyang Shen, Jong Yoon, Gordon Wang, Jacob Ballon, Longzhi Tan, Brandon Scott Pruett, Brian Knutson, Karl Deisseroth, William J Giardino. Mapping the Cellular Etiology of Schizophrenia and Diverse Brain Phenotypes (in revision).
+
 
 ## Software Requirements
 1. Python libraries: `h5py`, `numexpr`
