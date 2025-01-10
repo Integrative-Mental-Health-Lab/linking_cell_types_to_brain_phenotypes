@@ -11,8 +11,8 @@ Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal 
 ## Data Requirements
 1. GWAS summary statistics
    - The schizophrenia summary statistics used in the example code can be downloaded from the [PGC website](https://figshare.com/articles/dataset/scz2022/19426775)
-   - File name: PGC3_SCZ_wave3.european.autosome.public.v3.vcf.tsv
-   - File md5sum: 2955c20b93f62607d650c83e7c41b0c7
+   - File name: `PGC3_SCZ_wave3.european.autosome.public.v3.vcf.tsv`
+   - File md5sum: `2955c20b93f62607d650c83e7c41b0c7`
 2. [Siletti et al.'s single-cell RNAseq dataset](https://github.com/linnarsson-lab/adult-human-brain)
 3. [MAGMA auxiliary files](https://cncr.nl/research/magma/) of the same genome build and ancestry as GWAS summary statistics to be used
 
