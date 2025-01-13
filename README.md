@@ -4,7 +4,7 @@ Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal 
 
 
 ## Software Requirements
-1. Python libraries: `h5py`, `numexpr`
+1. Python libraries: `h5py`, `numexpr`, `numpy`, `tqdm`
 2. R libraries: `tidyverse`, `rhdf5`, `AnnotationDbi`, `org.Hs.eg.db`, `dplyr`, `readr` 
 3. [MAGMA v1.10](https://cncr.nl/research/magma/)
 
@@ -25,6 +25,9 @@ Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal 
       - `g1000_eur.fam`
       - `g1000_eur.synonyms`
    - Put these 5 files in a directory called `aux` to use when running MAGMA
+4. Pre-processing auxiliary files
+   - For step 2 of "Get MAGMA Inputs" (Preprocess the matrix and calculate specificity), remove the extended MHC (chromosome 6, 25Mb to 34Mb) from the auxiliary gene locations file
+   - For build 37, you can download the file `NCBI37.3.gene.loc.extendedMHCexcluded` [here](https://github.com/jbryois/scRNA_disease/blob/master/Code_Paper/Data/NCBI/NCBI37.3.gene.loc.extendedMHCexcluded) from Bryois et al.
   
 > [!IMPORTANT]  
 > Confirm the following items:
