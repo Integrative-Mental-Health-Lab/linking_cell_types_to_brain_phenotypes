@@ -14,15 +14,17 @@ Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal 
    - File name: `PGC3_SCZ_wave3.european.autosome.public.v3.vcf.tsv`
    - File md5sum = `2955c20b93f62607d650c83e7c41b0c7`
 2. [Siletti et al.'s single-cell RNAseq dataset](https://github.com/linnarsson-lab/adult-human-brain)
-3. [MAGMA auxiliary files](https://cncr.nl/research/magma/) of the same genome build and ancestry as GWAS summary statistics to be used
+   - File name: `adult_human_20221007.loom`
+4. [MAGMA auxiliary files](https://cncr.nl/research/magma/) of the same genome build and ancestry as GWAS summary statistics to be used
     - The schizophrenia summary statistics used in the example code are build 37 and only include individuals of European ancestry
-    - [Gene locations, build 37 file](https://vu.data.surfsara.nl/index.php/s/Pj2orwuF2JYyKxq): `NCBI37.3.gene.loc`, md5sum = `7f6ffd6abb0b02c94a629e74c036d5f6`
+    - [Gene locations, build 37 file](https://vu.data.surfsara.nl/index.php/s/Pj2orwuF2JYyKxq): `NCBI37.3.gene.loc`
     - [European ancestry reference data](https://vu.data.surfsara.nl/index.php/s/VZNByNwpD8qqINe): download the folder `g1000_eur`, which contains
-      - `g1000_eur.bed`, md5sum = `543f92fba6ffe987dabf848b169c968d`
-      - `g1000_eur.bim`, md5sum = `48fbc06e2ec736fbcc58989cb1727322`
-      - `g1000_eur.fam`, md5sum = `6935b96c7e6f2a8f6122a049969bd0b8`
-      - `g1000_eur.synonyms`, md5sum = `2807fd31bf0e92685c63629dc49b6574`
+      - `g1000_eur.bed`
+      - `g1000_eur.bim`
+      - `g1000_eur.fam`
+      - `g1000_eur.synonyms`
     - Put these 5 files in a directory called `aux` to use when running MAGMA
+
 
 ## Get MAGMA Inputs
 Follow the following steps:
