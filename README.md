@@ -15,16 +15,21 @@ Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal 
    - File md5sum = `2955c20b93f62607d650c83e7c41b0c7`
 2. [Siletti et al.'s single-cell RNAseq dataset](https://github.com/linnarsson-lab/adult-human-brain)
    - File name: `adult_human_20221007.loom`
-4. [MAGMA auxiliary files](https://cncr.nl/research/magma/) of the same genome build and ancestry as GWAS summary statistics to be used
-    - The schizophrenia summary statistics used in the example code are build 37 and only include individuals of European ancestry
-    - [Gene locations, build 37 file](https://vu.data.surfsara.nl/index.php/s/Pj2orwuF2JYyKxq): `NCBI37.3.gene.loc`
-    - [European ancestry reference data](https://vu.data.surfsara.nl/index.php/s/VZNByNwpD8qqINe): download the folder `g1000_eur`, which contains
+3. [MAGMA auxiliary files](https://cncr.nl/research/magma/) of the same genome build and ancestry as GWAS summary statistics to be used
+   - The schizophrenia summary statistics used in the example code are build 37 and only include individuals of European ancestry
+   - [Gene locations, build 37 file](https://vu.data.surfsara.nl/index.php/s/Pj2orwuF2JYyKxq): `NCBI37.3.gene.loc`
+   - [European ancestry reference data](https://vu.data.surfsara.nl/index.php/s/VZNByNwpD8qqINe): download the folder `g1000_eur`, which contains
       - `g1000_eur.bed`
       - `g1000_eur.bim`
       - `g1000_eur.fam`
       - `g1000_eur.synonyms`
-    - Put these 5 files in a directory called `aux` to use when running MAGMA
-
+   - Put these 5 files in a directory called `aux` to use when running MAGMA
+  
+> [!IMPORTANT]  
+> Confirm the following items:
+> 1. The summary statistics are from a non-admixed population that matches MAGMA's auxiliary data.
+> 2. The summary statistics are the same genome build as MAGMA's auxiliary files.
+> 3. If the summary statistics do not contain a SNP ID column, obtain the SNP IDs from the chromosomal and base pair positions using a reference file of the same genome build.
 
 ## Get MAGMA Inputs
 Follow the following steps:
@@ -32,12 +37,6 @@ Follow the following steps:
 2. [Preprocess the matrix and calculate specificity.](Preprocessing_Siletti/create_magma_inputs/get_Siletti_continuous_input.md)
 
 ## Run MAGMA
-First, confirm the following items:
-1. The summary statistics are from a single population that matches MAGMA's auxiliary data.
-2. The summary statistics are the same genome build as MAGMA's auxiliary files.
-3. If the summary statistics do not contain a SNP ID column, obtain the SNP IDs from the chromosomal and base pair positions using a reference file of the same genome build.
-
-Then, follow the steps below to run MAGMA (scripts to be modified accordingly):
 1. Create a SNP location file (`snploc_{GWAS_file_name}`) that contains three columns of the GWAS summary statistics in the following order: SNP ID, chromosome, and base pair position.
 2. Annotate and conduct a gene analysis.
      Example code is provided [here](MAGMA/1.annotationAndGeneAnalysis.sh). The annotation step requires SNP location files created earlier, while the gene analysis step requires original GWAS files. Please refer to the MAGMA manual for different specification options for sample size and more.
