@@ -15,6 +15,7 @@ Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal 
    - File md5sum = `2955c20b93f62607d650c83e7c41b0c7`
 2. [Siletti et al.'s single-cell RNAseq dataset](https://github.com/linnarsson-lab/adult-human-brain)
    - File name: `adult_human_20221007.loom`
+   * Note: this is a large file and can take ~1 hour to download.
 3. [MAGMA auxiliary files](https://cncr.nl/research/magma/) of the same genome build and ancestry as GWAS summary statistics to be used
    - The schizophrenia summary statistics used in the example code are build 37 and only include individuals of European ancestry
    - [Gene locations, build 37 file](https://vu.data.surfsara.nl/index.php/s/Pj2orwuF2JYyKxq): `NCBI37.3.gene.loc`
@@ -27,8 +28,8 @@ Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal 
   
 > [!IMPORTANT]  
 > Confirm the following items:
-> 1. The summary statistics are from a non-admixed population that matches MAGMA's auxiliary data.
-> 2. The summary statistics are the same genome build as MAGMA's auxiliary files.
+> 1. The summary statistics are from a non-admixed population that matches the MAGMA reference data.
+> 2. The summary statistics are the same genome build as the MAGMA gene locations file.
 > 3. If the summary statistics do not contain a SNP ID column, obtain the SNP IDs from the chromosomal and base pair positions using a reference file of the same genome build.
 
 ## Get MAGMA Inputs
