@@ -1,10 +1,18 @@
 # Mapping the Cellular Etiology of Schizophrenia and Diverse Brain Phenotypes
-This is the code for the following publication:
-Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal Senturk, Naghmeh Shargh, Sam Vesuna, Hanyang Shen, Jong Yoon, Gordon Wang, Jacob Ballon, Longzhi Tan, Brandon Scott Pruett, Brian Knutson, Karl Deisseroth, William J Giardino. Mapping the Cellular Etiology of Schizophrenia and Diverse Brain Phenotypes (in revision).
+Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal Senturk, Naghmeh Shargh, Sam Vesuna, Hanyang Shen, Jong Yoon, Gordon Wang, Jacob Ballon, Longzhi Tan, Brandon Scott Pruett, Brian Knutson, Karl Deisseroth, William J Giardino. 
+
+## Summary 
+This repository presents a comprehensive data-driven approach to unraveling the cellular and molecular underpinnings of psychiatric disorders, with a focus on schizophrenia. By integrating single nuclei RNA sequencing (snRNAseq) data with genome-wide association studies (GWAS) results, our work identifies and characterizes specific brain cell types implicated in disease etiology. Our findings not only validate previously reported associations but also reveal novel cell type contributions, achieving greater molecular specificity than earlier studies. This project further lays the foundation for a cell-type based classification system and offers a strategic roadmap for drug repurposing, novel therapeutic development, and personalized treatment strategies for psychiatric and other complex brain disorders.
+
+<img width="822" alt="Screenshot 2025-01-13 at 10 59 25 AM" src="https://github.com/user-attachments/assets/e06c8a9d-cedd-475b-ab2e-8436ec598138" />
 
 
-## Software Requirements
-1. Python libraries: `h5py`, `numexpr`, `numpy`, `tqdm`
+> [!WARNING]
+> In our analysis, the term "cluster" as used in the Siletti 2023 paper is referred to as "cell types". Please keep this terminology difference in mind when interpreting the results and comparing findings with the original publication.
+
+## Environment Setup
+Before running the analysis, please ensure that you have the following software and libraries installed.
+1. Python libraries: `h5py`, `numexpr`
 2. R libraries: `tidyverse`, `rhdf5`, `AnnotationDbi`, `org.Hs.eg.db`, `dplyr`, `readr` 
 3. [MAGMA v1.10](https://cncr.nl/research/magma/)
 
@@ -30,9 +38,9 @@ Laramie E Duncan*, Tayden Li*, Madeleine Salem, Will Li, Leili Mortazavi, Hazal 
    - For build 37, you can download the file `NCBI37.3.gene.loc.extendedMHCexcluded` [here](https://github.com/jbryois/scRNA_disease/blob/master/Code_Paper/Data/NCBI/NCBI37.3.gene.loc.extendedMHCexcluded) from Bryois et al.
   
 > [!IMPORTANT]  
-> Confirm the following items:
-> 1. The summary statistics are from a non-admixed population that matches the MAGMA reference data.
-> 2. The summary statistics are the same genome build as the MAGMA gene locations file.
+> Ensure Data Compatibility. Please confirm the following items before proceeding to the MAGMA analysis:
+> 1. The summary statistics are from a non-admixed population that matches MAGMA's auxiliary data.
+> 2. The summary statistics are the same genome build as MAGMA's auxiliary files.
 > 3. If the summary statistics do not contain a SNP ID column, obtain the SNP IDs from the chromosomal and base pair positions using a reference file of the same genome build.
 
 ## Get MAGMA Inputs
@@ -47,8 +55,18 @@ Follow the following steps:
 4. Run a gene property analysis.
      Example code is provided [here](MAGMA/2.genePropertyAnalysis.sh). Please also refer to the MAGMA manual for the usage of different flag options.
 
-### Conditional Analysis
+## Conditional Analysis
 To run a pairwise conditional analysis on clusters after the steps above, follow these steps (scripts to be modified accordingly):
 1. To limit the computation time, [create a MAGMA input file with only top clusters](MAGMA/3.create_top_results_matrix.md), as indicated by the results from the previous step.
 2. [Run a pairwise conditional analysis.](MAGMA/4.conditionalAnalysis.sh)
 3. [Conduct a forward stepwise selection](MAGMA/5.forward_selection_condition_results.md) to arrive at a list of independent clusters.
+
+## Cite us
+```
+@article {Duncan2024.10.21.24315695,
+	author = {Duncan, Laramie E and Li, Tayden and Salem, Madeleine and Li, Will and Mortazavi, Leili and Senturk, Hazal and Shargh, Naghmeh and Vesuna, Sam and Shen, Hanyang and Yoon, Jong and Wang, Gordon and Ballon, Jacob and Tan, Longzhi and Pruett, Brandon Scott and Knutson, Brian and Deisseroth, Karl and Giardino, William J},
+	title = {Mapping the Cellular Etiology of Schizophrenia and Diverse Brain Phenotypes},
+	year = {2024},
+	journal = {medRxiv}
+}
+```
