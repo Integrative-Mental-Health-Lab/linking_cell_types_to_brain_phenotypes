@@ -23,7 +23,7 @@ library("rhdf5")
 ### Load single cell dataset
 
 ```{r}
-file="/oak/stanford/groups/laramied/LDSC/Bryois2020/Code_Paper/Data/Siletti/Siletti_L2-cluster-log1p_matrix.h5"
+file="Siletti_L2-cluster-log1p_matrix.h5"
 h5f <- H5Fopen(file)
 exp <- as.data.frame(t(h5f$matrix))
 colnames(exp) <- h5f$Cluster
