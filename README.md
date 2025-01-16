@@ -41,7 +41,7 @@ Before running the analysis, please ensure that you have the following software 
 > Ensure Data Compatibility. Please confirm the following items before proceeding to the MAGMA analysis:
 > 1. The summary statistics are from a non-admixed population that matches MAGMA's auxiliary data.
 > 2. The summary statistics are the same genome build as MAGMA's auxiliary files.
-> 3. If the summary statistics do not contain a rsID number column, obtain the rsID numbers from the chromosomal and base pair positions using a reference file of the same genome build.
+> 3. If the summary statistics do not contain a rsID number column, obtain the rsIDs from the chromosomal and base pair positions using a reference file of the same genome build.
 
 ## Get MAGMA Inputs
 Follow the following steps:
@@ -49,7 +49,7 @@ Follow the following steps:
 2. [Preprocess the matrix and calculate specificity.](Preprocessing_Siletti/create_magma_inputs/get_Siletti_continuous_input.md)
 
 ## Run MAGMA
-1. Create a SNP location file (`snploc_{GWAS_file_name}`) that contains three columns of the GWAS summary statistics in the following order: `rsID numbers`, `chromosome`, and `base pair position`. Do not put a header row on this file.
+1. Create a SNP location file (`snploc_{GWAS_file_name}`) that contains three columns of the GWAS summary statistics in the following order: `rsID`, `chromosome`, and `base pair position`. Do not put a header row on this file.
 2. Annotate and conduct a gene analysis.
      Example code is provided [here](MAGMA/1.annotationAndGeneAnalysis.sh). The annotation step requires SNP location files created earlier, while the gene analysis step requires original GWAS files. Please refer to the MAGMA manual for different specification options for sample size and more.
 4. Run a gene property analysis.
