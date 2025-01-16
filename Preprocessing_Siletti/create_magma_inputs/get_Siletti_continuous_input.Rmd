@@ -56,7 +56,7 @@ Filtered to remove extended MHC (chromosome 6, 25Mb to 34Mb).
 
 ```{r}
 gene_coordinates <- 
-  read_tsv("../Data/NCBI/NCBI37.3.gene.loc.extendedMHCexcluded",
+  read_tsv("NCBI37.3.gene.loc.extendedMHCexcluded",
            col_names = FALSE,col_types = 'cciicc') %>%
   select(1:4) %>% 
   rename(end="X4", start="X3", chr="X2", ENTREZ="X1") %>% 
