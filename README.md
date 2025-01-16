@@ -41,18 +41,23 @@ Before running the analysis, please ensure that you have the following software 
 > Ensure Data Compatibility. Please confirm the following items before proceeding to the MAGMA analysis:
 > 1. The summary statistics are from a non-admixed population that matches MAGMA's auxiliary data.
 > 2. The summary statistics are the same genome build as MAGMA's auxiliary files.
-> 3. If the summary statistics do not contain a rsID number column, obtain the rsIDs from the chromosomal and base pair positions using a reference file of the same genome build.
 
 ## Get MAGMA Inputs
-Follow the following steps:
+Follow these steps:
 1. [Get the ln(1+x)-transformed cluster-by-gene matrix.](Preprocessing_Siletti/create_matrices/Siletti_create_L2-log_dataset.py)
 2. [Preprocess the matrix and calculate specificity.](Preprocessing_Siletti/create_magma_inputs/get_Siletti_continuous_input.md)
+3. Check that your GWAS summary statistics file has the following columns: `rsID`, `chromosome`, `base pair location`, `p-value`, and `n`
+   - `n` = the number of cases + controls for the phenotype and ancestry of interest
+   - If your file does not contain a `rsID` column, obtain the rsID numbers from the chromosomal and base pair positions using a reference file of the same genome build
+   - Include a header row on this file
+4. Create a SNP location file (`snploc_{GWAS_file_name}`)
+   - This file should contain three columns of the GWAS summary statistics in the following order: `rsID`, `chromosome`, and `base pair position`
+   - Remove any header rows from this file
 
 ## Run MAGMA
-1. Create a SNP location file (`snploc_{GWAS_file_name}`) that contains three columns of the GWAS summary statistics in the following order: `rsID`, `chromosome`, and `base pair position`. Do not put a header row on this file.
-2. Annotate and conduct a gene analysis.
+1. Annotate and conduct a gene analysis.
      Example code is provided [here](MAGMA/1.annotationAndGeneAnalysis.sh). The annotation step requires SNP location files created earlier, while the gene analysis step requires original GWAS files. Please refer to the MAGMA manual for different specification options for sample size and more.
-4. Run a gene property analysis.
+2. Run a gene property analysis.
      Example code is provided [here](MAGMA/2.genePropertyAnalysis.sh). Please also refer to the MAGMA manual for the usage of different flag options.
 
 ## Conditional Analysis
