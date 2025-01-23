@@ -68,10 +68,12 @@ To run a pairwise conditional analysis on clusters after the steps above, follow
 
 ## Cite us
 ```
-@article {Duncan2024.10.21.24315695,
-	author = {Duncan, Laramie E and Li, Tayden and Salem, Madeleine and Li, Will and Mortazavi, Leili and Senturk, Hazal and Shargh, Naghmeh and Vesuna, Sam and Shen, Hanyang and Yoon, Jong and Wang, Gordon and Ballon, Jacob and Tan, Longzhi and Pruett, Brandon Scott and Knutson, Brian and Deisseroth, Karl and Giardino, William J},
+@article {Duncan2025,
 	title = {Mapping the Cellular Etiology of Schizophrenia and Diverse Brain Phenotypes},
-	year = {2024},
-	journal = {medRxiv}
+	author = {Duncan, Laramie E and Li, Tayden and Salem, Madeleine and Li, Will and Mortazavi, Leili and Senturk, Hazal and Shargh, Naghmeh and Vesuna, Sam and Shen, Hanyang and Yoon, Jong and Wang, Gordon and Ballon, Jacob and Tan, Longzhi and Pruett, Brandon Scott and Knutson, Brian and Deisseroth, Karl and Giardino, William J},
+	year = {2025},
+	journal = {Nature Neuroscience},
+	doi={10.1038/s41593-024-01834-w},
+	url={https://www.nature.com/articles/s41593-024-01834-w}
 }
 ```
