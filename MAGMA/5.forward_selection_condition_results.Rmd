@@ -58,7 +58,7 @@ for (cur_var in select_list) {
     # drop if the condition indicates so with any cell types in indep_list
     df_cur = df_comb[df_comb$VARIABLE_a==indep_var & df_comb$VARIABLE_b==cur_var,]
     if ((df_cur$PS_a >= 0.8 & df_cur$PS_b >= 0.8) | 
-        (df_cur$PS_a >= 0.5 & df_cur$PS_b >= 0.5 & df_cur$P_cond_b < 0.001)) {
+        (df_cur$PS_a >= 0.5 & df_cur$PS_b >= 0.5 & df_cur$P_cond_b < 0.05)) {
       if (tail(indep_list,1) == indep_var) indep_list <- c(indep_list, cur_var)
     } else break
   }
