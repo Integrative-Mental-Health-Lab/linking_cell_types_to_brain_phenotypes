@@ -23,7 +23,8 @@ Before running the analysis, please ensure that you have the following software 
    - File md5sum = `2955c20b93f62607d650c83e7c41b0c7`
 2. [Siletti et al.'s single-cell RNAseq dataset](https://github.com/linnarsson-lab/adult-human-brain)
    - File name: `adult_human_20221007.loom`
-   * Note: this is a large file and can take ~1 hour to download.
+   * Note: this is a large file and can take ~1 hour to download
+   - The public link is [here](https://storage.googleapis.com/linnarsson-lab-human/adult_human_20221007.loom) to download using wget 
 3. [MAGMA auxiliary files](https://cncr.nl/research/magma/) of the same genome build and ancestry as GWAS summary statistics to be used
    - The schizophrenia summary statistics used in the example code are build 37 and only include individuals of European ancestry
    - [Gene locations, build 37 file](https://vu.data.surfsara.nl/index.php/s/Pj2orwuF2JYyKxq): `NCBI37.3.gene.loc`
