@@ -46,7 +46,7 @@ Before running the analysis, please ensure that you have the following software 
 ## Get MAGMA Inputs
 Follow these steps:
 > [!IMPORTANT]
-> You can skip the first two steps of Precprocessing Silletti data and can use the [Silletti Cluster Level Continious Specificity Matrix](https://www.dropbox.com/scl/fi/khb9hc9d7yts9nusoh5nk/Siletti_l2_conti_specificity_matrix.txt?rlkey=x66ifmsf9ejwx1d5chaxpgahg&dl=0) as an input to the MAGMA analysis.
+> You can skip the first two steps below for preprocessing Silletti-2023 data and can use the [Silletti Cluster Level Continious Specificity Matrix](https://www.dropbox.com/scl/fi/khb9hc9d7yts9nusoh5nk/Siletti_l2_conti_specificity_matrix.txt?rlkey=x66ifmsf9ejwx1d5chaxpgahg&dl=0) as an input to the MAGMA analysis.
 1. [Get the ln(1+x)-transformed cluster-by-gene matrix.](Preprocessing_Siletti/create_matrices/Siletti_create_L2-log_dataset.py)
 2. [Preprocess the matrix and calculate specificity.](Preprocessing_Siletti/create_magma_inputs/get_Siletti_continuous_input.md)
 3. Check that your GWAS summary statistics file has the following columns: `rsID`, `chromosome`, `base pair location`, `p-value`, and `n`
