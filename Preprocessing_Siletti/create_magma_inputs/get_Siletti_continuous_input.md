@@ -33,6 +33,14 @@ exp$Gene <- sub("\\..*", "", h5f$Accession)
 h5closeAll()
 ```
 
+Keep certain clusters only (if needed).
+
+
+```r
+exp <- exp %>% select(Cluster83:Cluster205, Gene)
+```
+
+
 Only keep genes with a unique name and tidy data.
 
 
