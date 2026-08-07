@@ -371,8 +371,6 @@ exp &lt;- as.data.frame(t(h5f$matrix))
 colnames(exp) &lt;- h5f$Cluster
 exp$Gene &lt;- sub(&quot;\\..*&quot;, &quot;&quot;, h5f$Accession)
 h5closeAll()</code></pre>
-<p>Keep certain clusters only (if needed).</p>
-<pre class="r"><code>exp &lt;- exp %&gt;% select(Cluster83:Cluster205, Gene)</code></pre>
 <p>Only keep genes with a unique name and tidy data.</p>
 <pre class="r"><code>exp &lt;- exp %&gt;% add_count(Gene) %&gt;% 
   filter(n==1) %&gt;%
