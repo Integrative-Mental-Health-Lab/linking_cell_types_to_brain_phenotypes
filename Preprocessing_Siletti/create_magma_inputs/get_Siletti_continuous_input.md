@@ -37,7 +37,7 @@ Keep certain clusters only (if needed).
 
 
 ```r
-exp <- exp %>% select(Cluster83:Cluster205, Gene)
+# exp <- exp %>% select(Cluster83:Cluster205, Gene)
 ```
 
 
