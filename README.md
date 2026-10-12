@@ -8,7 +8,7 @@ This repository described a data-driven approach to discovering  cellular and m
 
 
 > [!WARNING]
-> In our analysis, the term "cluster" as used in the Siletti 2023 paper is referred to as "cell types". Please keep this terminology difference in mind when interpreting the results and comparing findings with the original publication.
+> In our analysis, the term "cell type" refers to the taxonomic level of "cluster" from Siletti et al. 2023.
 
 ## Environment Setup
 Before running the analysis, please ensure that you have the following software and libraries installed.
