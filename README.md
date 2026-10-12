@@ -38,15 +38,14 @@ Before running the analysis, please ensure that you have the following software 
    - For step 2 of "Get MAGMA Inputs" (Preprocess the matrix and calculate specificity), remove the extended MHC (chromosome 6, 25Mb to 34Mb) from the auxiliary gene locations file
    - For build 37, you can download the file `NCBI37.3.gene.loc.extendedMHCexcluded` [here](https://github.com/jbryois/scRNA_disease/blob/master/Code_Paper/Data/NCBI/NCBI37.3.gene.loc.extendedMHCexcluded) from Bryois et al.
   
-> [!IMPORTANT]  
-> Ensure Data Compatibility. Please confirm the following items before proceeding to the MAGMA analysis:
-> 1. The summary statistics are from a non-admixed population that matches MAGMA's auxiliary data.
-> 2. The summary statistics are the same genome build as MAGMA's auxiliary files.
+Ensure Data Compatibility. Please confirm the following items before proceeding to the MAGMA analysis:
+1. The summary statistics are from a non-admixed population that matches MAGMA's auxiliary data.
+2. The summary statistics are the same genome build as MAGMA's auxiliary files.
 
 ## Get MAGMA Inputs
 Follow these steps:
-> [!IMPORTANT]
-> You can skip the first two steps below for preprocessing Silletti-2023 data and can use the [Specificity score matrix file for Siletti et al 2023](https://www.dropbox.com/scl/fi/3p5qoyfw5c3q8yf38s0di/conti_specificity_matrix.txt?rlkey=1aoza02mqxn9il5aj3bjn6shq&dl=0) as an input to the MAGMA analysis.
+
+You can skip the first two steps below for preprocessing Silletti-2023 data and can use the [Specificity score matrix file for Siletti et al 2023](https://www.dropbox.com/scl/fi/3p5qoyfw5c3q8yf38s0di/conti_specificity_matrix.txt?rlkey=1aoza02mqxn9il5aj3bjn6shq&dl=0) as an input to the MAGMA analysis.
 
 1. [Get the ln(1+x)-transformed cluster-by-gene matrix.](Preprocessing_Siletti/create_matrices/Siletti_create_L2-log_dataset.py)
 2. [Preprocess the matrix and calculate specificity.](Preprocessing_Siletti/create_magma_inputs/get_Siletti_continuous_input.md)
@@ -61,7 +60,7 @@ Follow these steps:
 
 ---
 
-### 📦 Update[09/16/2025]: Specificity Matrix Replacement
+### Update[09/16/2025]: Specificity Matrix Replacement
 
 > The specificity matrix in this repository has been re-generated directly using the provided code.  
 >
