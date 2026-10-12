@@ -7,7 +7,7 @@ This repository described a data-driven approach to discovering  cellular and m
 <img width="822" alt="Screenshot 2025-01-13 at 10 59 25 AM" src="https://github.com/user-attachments/assets/e06c8a9d-cedd-475b-ab2e-8436ec598138" />
 
 
-> [!WARNING]
+> [!Note]
 > In our analysis, the term "cell type" refers to the taxonomic level of "cluster" from Siletti et al. 2023.
 
 ## Environment Setup
